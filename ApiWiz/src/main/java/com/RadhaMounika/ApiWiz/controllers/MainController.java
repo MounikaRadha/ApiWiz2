@@ -20,7 +20,7 @@ public class MainController {
             @RequestParam("apiMethod") String apiMethod,
             @RequestParam("timeoutMS") int timeoutMs,
             @RequestBody RequestDTO requestDTO
-    ) throws InterruptedException {
+    ) throws Exception {
         AsyncRestFactory asyncRestFactory = new AsyncRestFactory();
         return asyncRestFactory.executeAsync(ApiMethod.valueOf(apiMethod), requestDTO, timeoutMs);
     }
