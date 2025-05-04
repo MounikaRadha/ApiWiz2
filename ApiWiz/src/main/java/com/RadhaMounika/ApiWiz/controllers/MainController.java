@@ -15,6 +15,7 @@ public class MainController {
     public String hello() {
         return "Hello World";
     }
+
     @LogTime
     @PostMapping("/index")
     public CompletableFuture<HttpResponse<String>> index(
