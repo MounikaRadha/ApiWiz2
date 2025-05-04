@@ -1,3 +1,4 @@
 - https://www.ibm.com/think/topics/api-orchestration
 - https://vimalma1093.medium.com/java-springboot-blocking-vs-non-blocking-rest-api-implementation-fe5643840287
 - https://www.baeldung.com/spring-webflux
+- https://stackoverflow.com/questions/33779127/loggerfactory-getloggerclassname-class-vs-loggerfactory-getloggerthis-getclas
