@@ -37,6 +37,23 @@ public class AsyncRestFactory {
 
     public CompletableFuture<HttpResponse<String>> executeAsync(ApiMethod method, RequestDTO requestDTO, int timeoutMs) throws Exception {
         HttpRequest request = generateRequest(method, requestDTO, timeoutMs);
+        return sendAsyncRequestWithRetry(request, requestDTO);
+    }
+
+    private CompletableFuture<HttpResponse<String>> sendAsyncRequestWithRetry(HttpRequest request, RequestDTO requestDTO) throws Exception {
+        if (requestDTO.isRetryEnabled()) {
+            for (int i = 0; i < requestDTO.getRetryCount(); i++) {
+                CompletableFuture<HttpResponse<String>> response = sendAsyncRequest(request);
+                HttpResponse<String> res = response.get();
+                if (!ErrorHandler.isErrored(res)) {
+                    return response;
+                }
+            }
+        }
+        return sendAsyncRequest(request);
+    }
+
+    private CompletableFuture<HttpResponse<String>> sendAsyncRequest(HttpRequest request) {
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(response -> {
             ErrorHandler.handleError(response);
             return response;
