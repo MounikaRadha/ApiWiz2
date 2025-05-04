@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApiWizApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiWizApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiWizApplication.class, args);
+    }
 
 }

@@ -14,6 +14,7 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
 @Component
 @Log4j2
 public class AsyncRestFactory {
@@ -26,6 +27,7 @@ public class AsyncRestFactory {
                 .version(HttpClient.Version.HTTP_1_1)
                 .build();
     }
+
     public AsyncRestFactory(SSLContext sslContext) {
         this.client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
@@ -38,7 +40,7 @@ public class AsyncRestFactory {
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                 .uri(URI.create(requestDTO.getUrl()))
                 .timeout(Duration.ofSeconds(timeoutMs));
-        log.info("in thread {}",Thread.currentThread().getName());
+        log.info("in thread {}", Thread.currentThread().getName());
         Thread.sleep(requestDTO.getSleepTime());
         addHeaders(requestBuilder, requestDTO.getHeaderVariables());
 
