@@ -21,3 +21,9 @@
 - RequestIdAddtionFilter will generate unique request id and put it in thread context
 - we can access it from anywhere else in that request-response cycle
 - RequestLoggingFilter will log the request body
+### video
+- attached a video in this folder
+- we added custom thread.sleep  based on given sleep time in request
+- in one we gave more called it first
+- in second request we gave less sleep time and called it next
+- now we can see the second request cycle finished without waiting for first request cycle to finish
