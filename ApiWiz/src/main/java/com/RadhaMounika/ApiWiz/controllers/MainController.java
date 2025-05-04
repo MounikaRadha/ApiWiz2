@@ -1,5 +1,6 @@
 package com.RadhaMounika.ApiWiz.controllers;
 
+import com.RadhaMounika.ApiWiz.annotation.LogTime;
 import com.RadhaMounika.ApiWiz.dto.RequestDTO;
 import com.RadhaMounika.ApiWiz.enums.ApiMethod;
 import com.RadhaMounika.ApiWiz.factory.AsyncRestFactory;
@@ -14,7 +15,7 @@ public class MainController {
     public String hello() {
         return "Hello World";
     }
-
+    @LogTime
     @PostMapping("/index")
     public CompletableFuture<HttpResponse<String>> index(
             @RequestParam("apiMethod") String apiMethod,
