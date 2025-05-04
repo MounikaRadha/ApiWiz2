@@ -20,7 +20,7 @@ public class RequestDTO {
     private Map<String, String> urlEncodedParam;
     private List<NameValuePair> params;
     private int sleepTime;
-    private  int retryCount;
+    private int retryCount;
     private boolean retryEnabled;
 
 }

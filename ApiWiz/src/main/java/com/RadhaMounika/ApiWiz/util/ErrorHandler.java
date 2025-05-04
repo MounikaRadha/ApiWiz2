@@ -5,7 +5,6 @@ import com.RadhaMounika.ApiWiz.exceptions.ServerSideException;
 import lombok.extern.log4j.Log4j2;
 
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
 
 @Log4j2
 public class ErrorHandler {

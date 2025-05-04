@@ -1,4 +1,6 @@
-package com.RadhaMounika.ApiWiz.logging;
+package com.RadhaMounika.ApiWiz.filters;
+
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -12,6 +14,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+
+import static constants.GlobalConstants.REQUEST_ID_NAME;
 
 @Component
 public class RequestLoggingFilter implements WebFilter {
@@ -27,7 +31,7 @@ public class RequestLoggingFilter implements WebFilter {
                     DataBufferUtils.release(dataBuffer);
 
                     String bodyString = new String(bytes, StandardCharsets.UTF_8);
-                    log.info("Request body: {}", bodyString);
+                    log.info("Request body: {} with request id {}", bodyString, ThreadContext.get(REQUEST_ID_NAME));
 
 
                     ServerHttpRequestDecorator decoratedRequest = new ServerHttpRequestDecorator(exchange.getRequest()) {
