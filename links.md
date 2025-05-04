@@ -3,3 +3,4 @@
 - https://www.baeldung.com/spring-webflux
 - https://stackoverflow.com/questions/33779127/loggerfactory-getloggerclassname-class-vs-loggerfactory-getloggerthis-getclas
 - https://stackoverflow.com/questions/50025086/in-java-what-is-the-simplest-way-to-create-an-sslcontext-with-just-a-pem-file
+- https://medium.com/@truongbui95/requestbodyadvice-in-spring-boot-a8a40ea59e6d
