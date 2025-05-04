@@ -3,6 +3,7 @@ package com.RadhaMounika.ApiWiz.factory;
 
 import com.RadhaMounika.ApiWiz.dto.RequestDTO;
 import com.RadhaMounika.ApiWiz.enums.ApiMethod;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import javax.net.ssl.SSLContext;
@@ -14,6 +15,7 @@ import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 @Component
+@Log4j2
 public class AsyncRestFactory {
 
     private final HttpClient client;
@@ -32,11 +34,12 @@ public class AsyncRestFactory {
                 .build();
     }
 
-    public CompletableFuture<HttpResponse<String>> executeAsync(ApiMethod method, RequestDTO requestDTO, int timeoutMs) {
+    public CompletableFuture<HttpResponse<String>> executeAsync(ApiMethod method, RequestDTO requestDTO, int timeoutMs) throws InterruptedException {
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                 .uri(URI.create(requestDTO.getUrl()))
-                .timeout(Duration.ofMillis(timeoutMs));
-
+                .timeout(Duration.ofSeconds(timeoutMs));
+        log.info("in thread {}",Thread.currentThread().getName());
+        Thread.sleep(requestDTO.getSleepTime());
         addHeaders(requestBuilder, requestDTO.getHeaderVariables());
 
         switch (method) {
@@ -56,7 +59,6 @@ public class AsyncRestFactory {
         }
 
         HttpRequest request = requestBuilder.build();
-        client.connectTimeout();
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }
 
